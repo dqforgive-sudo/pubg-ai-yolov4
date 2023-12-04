@@ -1,0 +1,6 @@
+classes= 80
+train  = data/yolov4/train
+valid  = data/yolov4/valid
+names = data/yolov4.names
+backup = backup/
+eval=yolov4

@@ -1,0 +1,1 @@
+dir /b /s /w *.png > train.txt

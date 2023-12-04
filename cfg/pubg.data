@@ -1,0 +1,6 @@
+classes= 56
+train  = data/pubg/train.txt
+valid  = data/pubg/valid.txt
+names = data/pubg.names
+backup = backup/
+eval=pubg

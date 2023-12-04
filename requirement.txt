@@ -1,0 +1,16 @@
+certifi==2020.6.20
+Cython==3.0.6
+distro==1.8.0
+labelImg==1.8.6
+lxml==4.9.3
+numpy==1.19.5
+opencv-python==4.2.0.32
+packaging==21.3
+Pillow==8.4.0
+pyparsing==3.1.1
+PyQt5==5.15.6
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.1
+scikit-build==0.16.7
+typing_extensions==4.1.1
+wincertstore==0.2

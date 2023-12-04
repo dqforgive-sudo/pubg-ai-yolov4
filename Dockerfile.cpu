@@ -1,0 +1,38 @@
+FROM ubuntu:latest AS builder
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y g++ make pkg-config libopencv-dev
+
+COPY  . /darknet
+
+WORKDIR /darknet
+
+RUN rm Dockerfile.cpu && \
+    rm Dockerfile.gpu && \
+    rm Docker-compose.yml && \
+    make
+
+FROM ubuntu:latest
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y sudo libgomp1 && \
+    useradd -U -m yolo && \
+    usermod -aG sudo yolo && \
+    usermod --shell /bin/bash yolo && \
+    echo "yolo:yolo" | chpasswd
+
+COPY --from=builder /darknet /home/yolo/darknet
+
+RUN cp /home/yolo/darknet/libdarknet.so /usr/local/lib/libdarknet.so || echo "libso not used" && \
+    cp /home/yolo/darknet/include/darknet.h /usr/local/include/darknet.h && \
+    ldconfig
+
+
+WORKDIR /home/yolo/darknet
+
+USER yolo
+
